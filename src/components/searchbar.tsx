@@ -26,7 +26,7 @@ export default ({value, onChange} : SearchBarType) => {
     <div className='container'>
         <SearchBar
         type="text"
-        placeholder="Search Task Here"
+        placeholder="🔍 Search Task Here"
         value={value}
         onChange={(e) => onChange(e.target.value)}>
         </SearchBar>

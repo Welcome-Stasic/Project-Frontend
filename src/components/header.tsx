@@ -44,7 +44,7 @@ export default () => {
       <div className="container">
         <HeaderContent>
         <HeaderText>
-          You have got {store.todayTasks.length} tasks today to complete
+          You have got {store.todayTasks.length} tasks today to complete✏️
         </HeaderText>
         <HeaderAvatarBox>
           <HeaderAvatar></HeaderAvatar>
