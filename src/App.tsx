@@ -1,13 +1,16 @@
-import React from 'react';
 import MainPage from './pages/main'
 import './App.css';
+import { StoreProvider } from './stores/StoreContext';
+
 
 
 function App() {
 
   return (
     <>
-    <MainPage/>
+    <StoreProvider>
+      <MainPage/>
+    </StoreProvider>
     </>
   )
 }

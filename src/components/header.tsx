@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-
+import { useStore } from '../stores/StoreContext';
 
 const Header = styled.header`
     margin-top: 56px;
@@ -36,22 +36,20 @@ const HeaderAvatar = styled.div`
     border-radius: 50%;
     background-color: #BA83DE;
 `;
-interface HeaderType {
-  TaskDay: number;
-};
-export default ({TaskDay} : HeaderType) => {
+export default () => {
+  const store = useStore();
   return (
     <>
     <Header>
       <div className="container">
         <HeaderContent>
         <HeaderText>
-          You have got {TaskDay} tasks today to complete
+          You have got {store.todayTasks.length} tasks today to complete
         </HeaderText>
         <HeaderAvatarBox>
           <HeaderAvatar></HeaderAvatar>
           <DayTaskHeader>
-            {TaskDay}
+            {store.todayTasks.length}
           </DayTaskHeader>
         </HeaderAvatarBox>
         </HeaderContent>
