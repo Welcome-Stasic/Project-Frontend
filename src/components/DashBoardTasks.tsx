@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from '@emotion/styled';
 import { useStore } from '../stores/StoreContext';
 import CardTask from './CardTask';
