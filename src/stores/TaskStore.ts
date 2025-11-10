@@ -35,11 +35,23 @@ class TaskStore {
       createdAt: new Date().toISOString()
     }
   ];
+    searchText: string = "";
 
     constructor() {
         makeAutoObservable(this);
     }
 
+    searchTextFilter = (query: string) => {
+      this.searchText = query.toLowerCase().trim();
+    }
+
+    get filterTasks(): Task[] {
+      if (!this.searchText) {
+        return this.tasks;
+      }
+      return this.tasks.filter(t => t.title.toLowerCase().includes(this.searchText));
+    }
+    
     toggleTask = (taskId: string) => {
         const task = this.tasks.find(t => t.id === taskId);
         if (task) {
@@ -75,11 +87,11 @@ class TaskStore {
     }
 
     get todayTasks(): Task[] {
-        return this.tasks.filter(task => task.type === 'today');
+        return this.filterTasks.filter(task => task.type === 'today');
     }
 
     get tomorrowTasks(): Task[] {
-        return this.tasks.filter(task => task.type === 'tomorrow');
+        return this.filterTasks.filter(task => task.type === 'tomorrow');
     }
 }
 
