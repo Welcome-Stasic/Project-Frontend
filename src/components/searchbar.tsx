@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
-
+const SearchbarWrapper = styled.div`
+    width: 100%;
+    height: 52px;
+    position: relative;
+`;
 const SearchBar = styled.input`
     width: 100%;
     height: 52px;
@@ -15,6 +19,12 @@ const SearchBar = styled.input`
         outline: 2px solid #BA83DE;
     }
 `;
+const ClearBtn = styled.div`
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+`;
 interface SearchBarType {
   value: string;
   onChange: (value: string) => void;
@@ -23,12 +33,17 @@ interface SearchBarType {
 export default ({ value, onChange }: SearchBarType) => {
   return (
     <>
+    <SearchbarWrapper>
         <SearchBar
           type="text"
           placeholder="🔍 Search Task Here"
           value={value}
           onChange={(e) => onChange(e.target.value)}>
         </SearchBar>
+      {value && (
+        <ClearBtn onClick={() => onChange('')}>✕</ClearBtn>
+      )}
+    </SearchbarWrapper>
     </>
   );
 };

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Link } from "react-router-dom";
 import  ArrowLeft  from '../assets/ArrowLeft.png'
 const HeadPageCreateWrapper = styled.div`
+    padding-left: 30px;
     margin-top: 56px;
     display: flex;
     width: 100%;
@@ -9,6 +10,7 @@ const HeadPageCreateWrapper = styled.div`
     position: relative;
     color: white;
     font-size: 25px;
+    text-align: center;
 `;
 const CircleLinkBack = styled.div`
    position: absolute;

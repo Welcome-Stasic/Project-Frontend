@@ -13,7 +13,7 @@ const CircleLink = styled.div`
 const CircleWrapper = styled.div`
     position: fixed;
     z-index: 101;
-    top: 70dvh;
+    top: 85dvh;
     right: calc(50% - min(500px, 100vw - 40px) / 2 + 10px);
 `;
 const CircleLinkVLine = styled.div`
