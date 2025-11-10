@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link } from "react-router-dom";
 
 type Priority = 'low' | 'medium' | 'high';
 
@@ -61,19 +62,22 @@ const CardMark = styled.div<CardMarkProps>`
     border-radius: 8px 0px 0px 8px;
 `
 export default ({id, priority, title, date, checked, onToggle }: TaskCardProps) => {
-    const handleCheckboxChange = () => {
+    const handleCheckboxChange = (e: React.MouseEvent) => {
+        e.stopPropagation();
         onToggle(id);
     };
   return (
     <>
+    <Link to={`/edit/${id}`} style={{ textDecoration: 'none', color:'white' }}>
         <CardWrapper checked={checked}>
             <CardMark priority={priority}/>
             <div>
                 {title}<br/>
                 <div>📅 {date}</div>
             </div>
-            <input type="checkbox" checked={checked} onChange={handleCheckboxChange}/>
+            <input type="checkbox" checked={checked} onClick={handleCheckboxChange}/>
         </CardWrapper>
+    </Link>
     </>
   ); 
 };

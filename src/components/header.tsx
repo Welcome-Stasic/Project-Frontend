@@ -41,7 +41,6 @@ export default () => {
   return (
     <>
     <Header>
-      <div className="container">
         <HeaderContent>
         <HeaderText>
           You have got {store.todayTasks.length} tasks today to complete✏️
@@ -53,7 +52,6 @@ export default () => {
           </DayTaskHeader>
         </HeaderAvatarBox>
         </HeaderContent>
-        </div>
     </Header>
     </>
   ); 

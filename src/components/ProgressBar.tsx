@@ -41,7 +41,6 @@ const ProgressBar = observer(() => {
   const store = useStore();
   return (
     <>
-    <div className="container">
     <ProgressTitle>Progress <LinkTaskAll href="#">See All</LinkTaskAll></ProgressTitle>
     <ProgressBarContainer>
         <div className="md-text">
@@ -72,7 +71,6 @@ const ProgressBar = observer(() => {
             <ProgressBarFront style={{ width: `${store.todayProgress.procent}%` }}></ProgressBarFront>
         </ProgressBarBack>
     </ProgressBarContainer>
-    </div>
     </>
   ); 
 });

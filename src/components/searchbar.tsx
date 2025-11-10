@@ -16,22 +16,19 @@ const SearchBar = styled.input`
     }
 `;
 interface SearchBarType {
-    value: string;
-    onChange: (value: string) => void;
+  value: string;
+  onChange: (value: string) => void;
 };
 
-export default ({value, onChange} : SearchBarType) => {
+export default ({ value, onChange }: SearchBarType) => {
   return (
     <>
-    <div className='container'>
         <SearchBar
-        type="text"
-        placeholder="🔍 Search Task Here"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}>
+          type="text"
+          placeholder="🔍 Search Task Here"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}>
         </SearchBar>
-    </div>
-
     </>
-  ); 
+  );
 };

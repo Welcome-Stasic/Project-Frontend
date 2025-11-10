@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import { useStore } from '../stores/StoreContext';
 import CardTask from './CardTask';
 import { observer } from 'mobx-react-lite';
+import CircleLinkCreateTask from '../components/CreateTaskLink';
+
 
 
 
@@ -30,17 +32,16 @@ const Dashboard = observer(() => {
   };
   return (
     <>
-    <div className="container">
-    <ProgressTitle>Today’s Task <LinkTaskAll href="#">See All</LinkTaskAll></ProgressTitle>
-    {tasksToday.map(item => 
-        <CardTask key={item.id} id={item.id} priority={item.priority} title={item.title} date={item.date} checked={item.completed} onToggle={handleToggleTask}/>
-    )}
-    <ProgressTitle>Tommorrow Task <LinkTaskAll href="#">See All</LinkTaskAll></ProgressTitle>
-    {tasksTommorow.map(item => 
-        <CardTask key={item.id} id={item.id} priority={item.priority} title={item.title} date={item.date} checked={item.completed} onToggle={handleToggleTask}/>
-    )}
-    </div>
+        <ProgressTitle>Today’s Task <LinkTaskAll href="#">See All</LinkTaskAll></ProgressTitle>
+        {tasksToday.map(item =>
+          <CardTask key={item.id} id={item.id} priority={item.priority} title={item.title} date={item.date} checked={item.completed} onToggle={handleToggleTask} />
+        )}
+        <ProgressTitle>Tommorrow Task <LinkTaskAll href="#">See All</LinkTaskAll></ProgressTitle>
+        {tasksTommorow.map(item =>
+          <CardTask key={item.id} id={item.id} priority={item.priority} title={item.title} date={item.date} checked={item.completed} onToggle={handleToggleTask} />
+        )}
+        <CircleLinkCreateTask />
     </>
-  ); 
+  );
 });
 export default Dashboard;
