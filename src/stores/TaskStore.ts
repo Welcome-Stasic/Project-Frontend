@@ -23,6 +23,16 @@ class TaskStore {
       completed: true,
       priority: "high",
       createdAt: new Date().toISOString()
+    },
+    {
+      id: "3",
+      title: "Prepare Wireframe for Main Flow", 
+      date: "5 Oct",
+      type: "tomorrow",
+      category: "design",
+      completed: false,
+      priority: "medium",
+      createdAt: new Date().toISOString()
     }
   ];
 
@@ -33,7 +43,7 @@ class TaskStore {
     toggleTask = (taskId: string) => {
         const task = this.tasks.find(t => t.id === taskId);
         if (task) {
-            task.completed = true;
+            task.completed = !task.completed;
         }
     };
 

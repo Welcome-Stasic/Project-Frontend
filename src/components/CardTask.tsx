@@ -5,12 +5,35 @@ type Priority = 'low' | 'medium' | 'high';
 interface CardMarkProps {
   priority: Priority;
 }
+
+interface CheckedTask {
+  checked: boolean;
+}
 interface TaskCardProps {
+  id: string; 
   priority: Priority;
   title: string;
   date: string;
+  checked: boolean;
+  onToggle: (taskId: string) => void;
 }
-const CardWrapper = styled.div`
+const CardWrapper = styled.div<CheckedTask>`
+    opacity: ${props => {
+        switch(props.checked) {
+            case true:
+                return '50%';
+            case false: 
+                return '100%';
+        }
+    }};
+    text-decoration: ${props => {
+        switch(props.checked) {
+            case true:
+                return 'line-through';
+            case false: 
+                return 'none';
+        }
+    }};
     margin-bottom: 10px;
     background-color: #1F1F1F;
     border-radius: 8px;
@@ -37,17 +60,19 @@ const CardMark = styled.div<CardMarkProps>`
     width: 15px;
     border-radius: 8px 0px 0px 8px;
 `
-export default ({ priority, title, date }: TaskCardProps) => {
-    
+export default ({id, priority, title, date, checked, onToggle }: TaskCardProps) => {
+    const handleCheckboxChange = () => {
+        onToggle(id);
+    };
   return (
     <>
-        <CardWrapper>
+        <CardWrapper checked={checked}>
             <CardMark priority={priority}/>
             <div>
                 {title}<br/>
                 <div>📅 {date}</div>
             </div>
-            <input type="checkbox"/>
+            <input type="checkbox" checked={checked} onChange={handleCheckboxChange}/>
         </CardWrapper>
     </>
   ); 

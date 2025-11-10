@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useStore } from '../stores/StoreContext';
+import { observer } from 'mobx-react-lite';
 
 const ProgressTitle = styled.div`
     margin-top: 30px;
@@ -36,7 +37,7 @@ const ProgressBarFront = styled.div`
     transition: 0.5s;
 `
 
-export default () => {
+const ProgressBar = observer(() => {
   const store = useStore();
   return (
     <>
@@ -74,4 +75,5 @@ export default () => {
     </div>
     </>
   ); 
-};
+});
+export default ProgressBar;
