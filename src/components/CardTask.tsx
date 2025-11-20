@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from "react-router-dom";
+import { useStore } from '../stores/StoreContext';
+import { observer } from 'mobx-react-lite';
 
 type Priority = 'low' | 'medium' | 'high';
 
@@ -10,6 +12,7 @@ interface CardMarkProps {
 interface CheckedTask {
   checked: boolean;
 }
+
 interface TaskCardProps {
   id: string; 
   priority: Priority;
@@ -17,18 +20,20 @@ interface TaskCardProps {
   date: string;
   checked: boolean;
   onToggle: (taskId: string) => void;
+  showFullDate?: boolean;
 }
+
 const CardWrapper = styled.div<CheckedTask>`
-    opacity: ${props => {
-        switch(props.checked) {
+    opacity: ${p => {
+        switch(p.checked) {
             case true:
                 return '50%';
             case false: 
                 return '100%';
         }
     }};
-    text-decoration: ${props => {
-        switch(props.checked) {
+    text-decoration: ${p => {
+        switch(p.checked) {
             case true:
                 return 'line-through';
             case false: 
@@ -43,9 +48,10 @@ const CardWrapper = styled.div<CheckedTask>`
     display: flex;
     justify-content: space-between;
 `
+
 const CardMark = styled.div<CardMarkProps>`
-    background-color: ${props => {
-        switch (props.priority) {
+    background-color: ${p => {
+        switch (p.priority) {
             case 'high':
                 return '#FACBBA';
             case 'medium':
@@ -61,23 +67,29 @@ const CardMark = styled.div<CardMarkProps>`
     width: 15px;
     border-radius: 8px 0px 0px 8px;
 `
-export default ({id, priority, title, date, checked, onToggle }: TaskCardProps) => {
+
+const CardTask = observer(({id, priority, title, date, checked, onToggle, showFullDate = false }: TaskCardProps) => {
+    const store = useStore();
+    
     const handleCheckboxChange = (e: React.MouseEvent) => {
         e.stopPropagation();
         onToggle(id);
     };
-  return (
-    <>
-    <Link to={`/edit/${id}`} style={{ textDecoration: 'none', color:'white' }}>
-        <CardWrapper checked={checked}>
-            <CardMark priority={priority}/>
-            <div>
-                {title}<br/>
-                <div>📅 {date}</div>
-            </div>
-            <input type="checkbox" checked={checked} onClick={handleCheckboxChange}/>
-        </CardWrapper>
-    </Link>
-    </>
-  ); 
-};
+
+    const displayDate = store.getDisplayDate(date);
+
+    return (
+      <Link to={`/edit/${id}`} style={{ textDecoration: 'none', color:'white' }}>
+          <CardWrapper checked={checked}>
+              <CardMark priority={priority}/>
+              <div>
+                  {title}<br/>
+                  <div>📅 {showFullDate ? displayDate : displayDate}</div>
+              </div>
+              <input type="checkbox" checked={checked} onClick={handleCheckboxChange}/>
+          </CardWrapper>
+      </Link>
+    );
+});
+
+export default CardTask;

@@ -1,7 +1,7 @@
 import HeadPage from '../components/HeadCreatePage';
 import { useStore } from '../stores/StoreContext';
 import { useParams } from 'react-router-dom';
-
+import  TaskForm  from '../components/TaskForm';
 const CreatePage = () => {
     const store = useStore();
 
@@ -19,6 +19,7 @@ const CreatePage = () => {
         <>
         <div className="container">
             <HeadPage {...HeadPageProps}/>
+            <TaskForm/>
         </div>
         </>
     );

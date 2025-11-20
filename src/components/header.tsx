@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useStore } from '../stores/StoreContext';
+import { observer } from 'mobx-react-lite';
 
 const Header = styled.header`
     margin-top: 56px;
@@ -36,23 +37,33 @@ const HeaderAvatar = styled.div`
     border-radius: 50%;
     background-color: #BA83DE;
 `;
-export default () => {
+const HeaderComponent = observer( () => {
   const store = useStore();
   return (
     <>
     <Header>
         <HeaderContent>
         <HeaderText>
-          You have got {store.todayTasks.length} tasks today to complete✏️
+          { store.todayTasksComplete.length > 0 ?
+           <>
+           You have got {store.todayTasksComplete.length} tasks today to complete✏️
+           </> :
+           <>
+           All tasks completed for today👌
+           </>
+          }
         </HeaderText>
         <HeaderAvatarBox>
           <HeaderAvatar></HeaderAvatar>
+          { store.todayTasksComplete.length > 0 && (
           <DayTaskHeader>
-            {store.todayTasks.length}
+            {store.todayTasksComplete.length}
           </DayTaskHeader>
+          )}
         </HeaderAvatarBox>
         </HeaderContent>
     </Header>
     </>
   ); 
-};
+});
+export default HeaderComponent;
