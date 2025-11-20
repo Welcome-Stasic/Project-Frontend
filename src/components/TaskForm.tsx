@@ -34,6 +34,23 @@ const Input = styled.input`
     border-color: #BA83DE;
   }
 `;
+const DateInput = styled.input`
+  width: 100%;
+  padding: 12px 16px;
+  background: #181818;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  &:focus {
+    outline: none;
+    border-color: #BA83DE;
+  }
+`;
 
 const TextArea = styled.textarea`
   width: 100%;
@@ -223,7 +240,7 @@ const TaskForm = () => {
       <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
         <FormGroup>
           <Label>Date</Label>
-          <Input
+          <DateInput
             type="date"
             value={formData.dueDate}
             onChange={(e) => handleChange('dueDate', e.target.value)}
