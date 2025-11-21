@@ -1,5 +1,5 @@
-import React from 'react';
-import taskStore from './TaskStore';
+import React from "react";
+import taskStore from "./TaskStore";
 
 export const StoreContext = React.createContext(taskStore);
 
@@ -9,9 +9,7 @@ interface StoreProviderProps {
 
 export const StoreProvider: React.FC<StoreProviderProps> = ({ children }) => {
   return (
-    <StoreContext.Provider value={taskStore}>
-      {children}
-    </StoreContext.Provider>
+    <StoreContext.Provider value={taskStore}>{children}</StoreContext.Provider>
   );
 };
 export const useStore = () => {
