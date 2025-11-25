@@ -3,6 +3,7 @@ const SearchbarWrapper = styled.div`
   width: 100%;
   height: 52px;
   position: relative;
+  padding-bottom: 5px;
 `;
 const SearchBar = styled.input`
   width: 100%;

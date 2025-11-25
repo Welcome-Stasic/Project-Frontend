@@ -20,7 +20,6 @@ interface TaskCardProps {
   date: string;
   checked: boolean;
   onToggle: (taskId: string) => void;
-  showFullDate?: boolean;
 }
 
 const CardWrapper = styled.div<CheckedTask>`
@@ -69,15 +68,7 @@ const CardMark = styled.div<CardMarkProps>`
 `;
 
 const CardTask = observer(
-  ({
-    id,
-    priority,
-    title,
-    date,
-    checked,
-    onToggle,
-    showFullDate = false,
-  }: TaskCardProps) => {
+  ({ id, priority, title, date, checked, onToggle }: TaskCardProps) => {
     const store = useStore();
 
     const handleCheckboxChange = (e: React.MouseEvent) => {
@@ -97,7 +88,7 @@ const CardTask = observer(
           <div>
             {title}
             <br />
-            <div>📅 {showFullDate ? displayDate : displayDate}</div>
+            <div>📅 {displayDate}</div>
           </div>
           <input
             type="checkbox"

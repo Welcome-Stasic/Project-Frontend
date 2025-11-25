@@ -247,7 +247,7 @@ const TaskForm = () => {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Title</Label>
+        <Label>Name</Label>
         <Input
           type="text"
           placeholder="Name"

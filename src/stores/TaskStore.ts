@@ -55,7 +55,6 @@ class TaskStore {
     const task = this.tasks.find((t) => t.id === taskId);
     if (task) {
       task.completed = !task.completed;
-      task.type = this.getTaskType(task.dueDate);
     }
   };
 
@@ -119,7 +118,7 @@ class TaskStore {
       tomorrow: this.tasks.filter((task) => task.dueDate === tomorrow),
       future: this.tasks
         .filter((t) => t.dueDate > tomorrow)
-        .sort(
+        .(
           (a, b) =>
             new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
         ),

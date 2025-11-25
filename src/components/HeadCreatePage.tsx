@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ArrowLeft from "../assets/ArrowLeft.png";
 const HeadPageCreateWrapper = styled.div`
   padding-left: 30px;
@@ -22,14 +22,18 @@ interface TaskFormHeaderProps {
 }
 
 const HeadCreatePage = ({ mode, Title }: TaskFormHeaderProps) => {
+  const navigate = useNavigate();
   return (
     <>
       <HeadPageCreateWrapper>
-        <Link to={"/"}>
-          <CircleLinkBack>
-            <img src={ArrowLeft} />
-          </CircleLinkBack>
-        </Link>
+        <CircleLinkBack
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          <img src={ArrowLeft} />
+        </CircleLinkBack>
         {mode === "create" ? "Create Task" : `${Title}`}
       </HeadPageCreateWrapper>
     </>
