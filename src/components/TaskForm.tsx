@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useState, useEffect } from "react";
 import { useStore } from "../stores/StoreContext";
 import { useNavigate, useParams } from "react-router-dom";
-import type { CreateTaskData } from "../../types/typesTask";
+import type { CreateTaskData } from "../types/typesTask";
 
 interface BtnSelectProps {
   active: boolean;
