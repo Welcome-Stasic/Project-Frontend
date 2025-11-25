@@ -118,7 +118,7 @@ class TaskStore {
       tomorrow: this.tasks.filter((task) => task.dueDate === tomorrow),
       future: this.tasks
         .filter((t) => t.dueDate > tomorrow)
-        .(
+        .sort(
           (a, b) =>
             new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
         ),
