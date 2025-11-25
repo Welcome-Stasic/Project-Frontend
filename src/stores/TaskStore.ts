@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import type { Task, Progress, CreateTaskData } from "../../types/typesTask";
+import type { Task, Progress, CreateTaskData } from "../types/typesTask";
 
 class TaskStore {
   tasks: Task[] = [
